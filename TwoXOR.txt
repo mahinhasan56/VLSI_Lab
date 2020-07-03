@@ -1,0 +1,31 @@
+// DSCH 2.7a
+// 9/26/2017 4:33:03 PM
+// D:\CSE460_EEE412_all sections\Export dsch2\Export dsch2\TwoXOR.sch
+
+module TwoXOR( A,B,out3);
+ input A,B;
+ output out3;
+ nmos #(10) nmos(w2,vss,B); // 1.0u 0.12u
+ nmos #(38) nmos(w5,w3,A); // 1.0u 0.12u
+ nmos #(10) nmos(w3,vss,w6); // 1.0u 0.12u
+ pmos #(24) pmos(w9,vdd,w8); // 2.0u 0.12u
+ pmos #(24) pmos(w9,vdd,B); // 2.0u 0.12u
+ pmos #(38) pmos(w5,w9,A); // 2.0u 0.12u
+ pmos #(38) pmos(w5,w9,w6); // 2.0u 0.12u
+ nmos #(38) nmos(w5,w2,w8); // 1.0u 0.12u
+ pmos #(23) pmos_AS1(out3,vdd,w5); //  
+ nmos #(23) nmos_AS2(out3,vss,w5); //  
+ pmos #(30) pmos_AS3(w6,vdd,B); //  
+ nmos #(30) nmos_AS4(w6,vss,B); //  
+ pmos #(30) pmos_AS5(w8,vdd,A); //  
+ nmos #(30) nmos_AS6(w8,vss,A); //  
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 A=~A;
+#2000 B=~B;
+
+// Simulation parameters
+// A CLK 10 10
+// B CLK 20 20

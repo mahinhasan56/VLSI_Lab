@@ -1,0 +1,28 @@
+USER SYMBOL by DSCH 2.7a
+DATE 9/26/2017 4:49:59 PM
+SYM  #twoOR
+BB(0,0,40,30)
+TITLE 10 -2  #twoOR
+MODEL 6000
+REC(5,5,30,20)
+PIN(0,10,0.00,0.00)A
+PIN(0,20,0.00,0.00)B
+PIN(40,10,2.00,1.00)out2
+LIG(0,10,5,10)
+LIG(0,20,5,20)
+LIG(35,10,40,10)
+LIG(5,5,5,25)
+LIG(5,5,35,5)
+LIG(35,5,35,25)
+LIG(35,25,5,25)
+VLG module twoOR( A,B,out2);
+VLG  input A,B;
+VLG  output out2;
+VLG  pmos #(10) pmos(w2,vdd,A); // 2.0u 0.12u
+VLG  pmos #(31) pmos(w4,w2,B); // 2.0u 0.12u
+VLG  nmos #(31) nmos(w4,vss,B); // 1.0u 0.12u
+VLG  nmos #(31) nmos(w4,vss,A); // 1.0u 0.12u
+VLG  pmos #(23) pmos_AS1(out2,vdd,w4); //  
+VLG  nmos #(23) nmos_AS2(out2,vss,w4); //  
+VLG endmodule
+FSYM

@@ -1,0 +1,23 @@
+// DSCH 2.7a
+// 9/26/2017 4:49:59 PM
+// D:\CSE460_EEE412_all sections\Export dsch2\Export dsch2\twoOR.sch
+
+module twoOR( A,B,out2);
+ input A,B;
+ output out2;
+ pmos #(10) pmos(w2,vdd,A); // 2.0u 0.12u
+ pmos #(31) pmos(w4,w2,B); // 2.0u 0.12u
+ nmos #(31) nmos(w4,vss,B); // 1.0u 0.12u
+ nmos #(31) nmos(w4,vss,A); // 1.0u 0.12u
+ pmos #(23) pmos_AS1(out2,vdd,w4); //  
+ nmos #(23) nmos_AS2(out2,vss,w4); //  
+endmodule
+
+// Simulation parameters in Verilog Format
+always
+#1000 A=~A;
+#2000 B=~B;
+
+// Simulation parameters
+// A CLK 10 10
+// B CLK 20 20
